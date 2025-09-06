@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: user-service
-          image: minnuantony/user-service:cddcff5 # <-- change image name
+          image: minnuantony/user-service:sha-de8c4e65f81b08c118f5de05426004122a026d88
           ports:
             - containerPort: 5000
           resources:
@@ -71,4 +71,4 @@ spec:
   template:
     spec:
       containers:
-        - image: minnuantony/user-service:cddcff5
+        - image: minnuantony/user-service:sha-de8c4e65f81b08c118f5de05426004122a026d88
