@@ -9,7 +9,8 @@ jobs:
   build-push:
     runs-on: ubuntu-latest
     env:
-      IMAGE: ${{ secrets.DOCKER_USERNAME }}/user-service:latest
+      REGISTRY: ${{ secrets.DOCKER_USERNAME }}
+      IMAGE_NAME: user-service
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -20,9 +21,13 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
 
+      - name: Extract Git metadata
+        id: vars
+        run: |
+          echo "sha_short=${GITHUB_SHA::7}" >> $GITHUB_OUTPUT
+
       - name: Build Docker image
-        run: docker build -t $IMAGE .
+        run: docker build -t $REGISTRY/$IMAGE_NAME:${{ steps.vars.outputs.sha_short }} .
 
       - name: Push Docker image
-        run: docker push $IMAGE
-
+        run: docker push $REGISTRY/$IMAGE_NAME:${{ steps.vars.outputs.sha_short }}
