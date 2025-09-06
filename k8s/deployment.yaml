@@ -14,13 +14,13 @@ spec:
     spec:
       containers:
         - name: user-service
-          image: minnuantony/user-service:latest   # <-- change image name
+          image: minnuantony/user-service:cddcff5 # <-- change image name
           ports:
             - containerPort: 5000
           resources:
             requests:
               cpu: 100m
-              memory: 100Mi      #128Mi 
+              memory: 100Mi #128Mi 
             limits:
               cpu: 500m
               memory: 256Mi
@@ -68,3 +68,7 @@ spec:
     - port: 5000
       targetPort: 5000
   type: ClusterIP
+  template:
+    spec:
+      containers:
+        - image: minnuantony/user-service:cddcff5
