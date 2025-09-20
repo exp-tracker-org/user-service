@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: user-service
-          image: minnuantony/user-service:sha-399864b4a01008cf9ae92a835702ecf9d10becaa
+          image: minnuantony/user-service:latest
           ports:
             - containerPort: 5000
           resources:
@@ -68,7 +68,4 @@ spec:
     - port: 5000
       targetPort: 5000
   type: ClusterIP
-  template:
-    spec:
-      containers:
-        - image: minnuantony/user-service:sha-399864b4a01008cf9ae92a835702ecf9d10becaa
+ 
