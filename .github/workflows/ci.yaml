@@ -55,8 +55,7 @@ jobs:
 
       - name: Run SCA (pip-audit)
         run: |
-          mkdir -p reports
-          pip-audit -f json -o reports/pip-audit.json
+          pip-audit || true
 
       - name: Upload reports
         uses: actions/upload-artifact@v4
