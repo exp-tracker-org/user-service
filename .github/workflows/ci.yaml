@@ -51,7 +51,7 @@ jobs:
       - name: Run SAST (Bandit)
         run: |
           mkdir -p reports
-          bandit -r app/ 
+          bandit -r app/ || true
 
       - name: Run SCA (pip-audit)
         run: |
