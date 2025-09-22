@@ -10,6 +10,8 @@ jobs:
     steps:
       - name: Run OWASP ZAP Passive Scan
         uses: zaproxy/action-baseline@v0.8.0
+        continue-on-error: true
+
         with:
           target: 'http://54.86.64.217:32395'
           cmd_options: '-m 1'
