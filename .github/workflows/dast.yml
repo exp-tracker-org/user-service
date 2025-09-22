@@ -5,19 +5,18 @@ on:
 
 jobs:
   passive-dast:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     steps:
-      - uses: actions/checkout@v3
-
-      - name: Set up Python
-        uses: actions/setup-python@v4
+      - name: Run OWASP ZAP Passive Scan
+        uses: zaproxy/action-baseline@v0.8.0
         with:
-          python-version: '3.11'
-
-      - name: Install OWASP ZAP Baseline
-        run: |
-          pip install python-owasp-zap-v2.4
-
-      - name: Run Passive Scan
-        run: |
-          python -m zapv2_baseline -t http://54.86.64.217:32395 -m 1
+          target: 'http://54.86.64.217:32395'
+          cmd_options: '-m 1'
+          fail_action: false
+          docker_name: 'owasp/zap2docker-stable'  # no :latest
+          
+      - name: Upload Passive DAST Report
+        uses: actions/upload-artifact@v4
+        with:
+          name: passive-dast-report
+          path: zap_report.html
