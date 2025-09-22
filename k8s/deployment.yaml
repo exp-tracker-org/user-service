@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: user-service
-          image: minnuantony/user-service:sha-8a81a986f878f74234d1562bde4049014a5fa6e7
+          image: minnuantony/user-service:sha-3bb26b389db4f4d7c996aaac5e531b2e47474fa3
           ports:
             - containerPort: 5000
           resources:
